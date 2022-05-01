@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/CSS/nerdGame.css" />
+  </head>
+  <body>
+    <video autoplay muted loop id="myVideo">
+      <source src="/Assets/Videos/background-vide.mp4" type="video/mp4" />
+    </video>
+
+    <div class="content" id="delete-canvas">
+      <div id="enemy_dialogue"></div>
+
+      <div id="game_area">
+        <canvas id="my-canvas" width="1200" height="600"></canvas>
+      </div>
+    </div>
+
+    <script src="/JS/classes.js"></script>
+    <script src="/JS/game.js"></script>
+    <script src="/JS/EnemyTaunts.js"></script>
+  </body>
+</html>
