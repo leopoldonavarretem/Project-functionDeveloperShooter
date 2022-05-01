@@ -17,7 +17,7 @@ A project centered on creating a videogame.
 - [ ]  Add Banners for post levels 
 - [ ]  Add Game description
 - [/]  HTML Enemies follow character
-- [ ]  
+- [ ]  Add nice assets
 - [ ]  
 - [ ]  
 

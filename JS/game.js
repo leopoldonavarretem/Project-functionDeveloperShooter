@@ -40,6 +40,10 @@ function winGame() {
   }, 30000);
 }
 
+function loseGame() {
+  window.location.href = "/HTML/lose.html";
+}
+
 function updateGame() {
   frames++;
   ctx.clearRect(0, 0, 1200, 600);
@@ -121,6 +125,10 @@ function generateEnemies() {
       currentEnemy.y < -300
     ) {
       currentEnemies.splice(index, 1);
+    }
+
+    if (mainCharacter.collision(currentEnemy)) {
+      loseGame();
     }
   });
 }
