@@ -72,18 +72,19 @@ class MainCharacter {
 }
 
 class WaveBanner {
-  constructor() {
-    this.x = 1300;
-    this.y = 225;
-    this.width = 250;
-    this.height = 150;
+  constructor(level) {
+    this.x = 375;
+    this.y = 175;
+    this.width = 450;
+    this.height = 250;
     this.image = new Image();
+    this.level = level
   }
 
-  draw(level) {
+  draw() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
 
-    switch (level) {
+    switch (this.level) {
       case "level1":
         this.image.src = "/Assets//Images/Banner-Horda-1.png";
         break;
@@ -99,8 +100,6 @@ class WaveBanner {
       case "level5":
         this.image.src = "";
     }
-
-    this.x -= 5;
   }
 }
 

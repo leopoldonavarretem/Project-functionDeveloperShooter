@@ -15,16 +15,14 @@ let currentBullets = [];
 //GAME START
 window.onload = () => {
   startGame();
+  winGame();
 };
 
 //GAME FUNCTIONS
 function startGame() {
   requestId = requestAnimationFrame(updateGame);
 
-  setTimeout(() => {
-    window.location.href = "/HTML/win.html";
-  }, 30000);
-
+  
   addEventListener("keydown", (event) => {
     if (event.key == "w" || "d" || "s" || "a") {
       mainCharacter.action(event.key);
@@ -37,10 +35,10 @@ function startGame() {
   });
 }
 
-function endGame() {
-  window.location.href = "/HTML/lose.html";
-  requestId = undefined;
-  characterDeath = 1;
+function winGame() {
+  setTimeout(() => {
+    window.location.href = "/HTML/win.html";
+  }, 30000);
 }
 
 function updateGame() {
@@ -63,11 +61,25 @@ function generateAssets() {
   drawBullet();
 
   //lEVEL ONE
-  generateBanner1();
-  generateWave1();
+  generateBanners();
+  generateEnemies();
+}
 
-  drawBanner1();
-  drawWave1();
+function generateBanners() {
+  if(frames == 100) {
+    const levelOneBanner = new WaveBanner("level1");
+    currentBanner.push(levelOneBanner)
+
+  }
+
+  if(frames ==200){
+    currentBanner.pop()
+  }
+  
+  currentBanner.forEach((current)=>{
+    current.draw()
+  })
+
 }
 
 function drawBullet() {
@@ -85,28 +97,26 @@ function drawBullet() {
 }
 
 //GENERATE WAVE 1
-function generateWave1() {
-  if (!(frames === 250)) {
-    return true;
+function generateEnemies() {
+  if (frames === 500) {
+    const htmlEnemy1 = new HtmlEnemy(1300, 50);
+    const htmlEnemy2 = new HtmlEnemy(1300, 250);
+    const htmlEnemy3 = new HtmlEnemy(1300, 450);
+    const htmlEnemy4 = new HtmlEnemy(1400, 150);
+    const htmlEnemy5 = new HtmlEnemy(1400, 350);
+
+    currentEnemies.push(
+      htmlEnemy1,
+      htmlEnemy2,
+      htmlEnemy3,
+      htmlEnemy4,
+      htmlEnemy5
+    );
   }
 
-  const htmlEnemy1 = new HtmlEnemy(1300, 50);
-  const htmlEnemy2 = new HtmlEnemy(1300, 250);
-  const htmlEnemy3 = new HtmlEnemy(1300, 450);
-  const htmlEnemy4 = new HtmlEnemy(1400, 150);
-  const htmlEnemy5 = new HtmlEnemy(1400, 350);
-
-  currentEnemies.push(
-    htmlEnemy1,
-    htmlEnemy2,
-    htmlEnemy3,
-    htmlEnemy4,
-    htmlEnemy5
-  );
-}
-
-function drawWave1() {
   currentEnemies.forEach((currentEnemy, index) => {
+    currentEnemy.draw();
+
     if (
       currentEnemy.x < -100 ||
       currentEnemy.x > 1500 ||
@@ -115,32 +125,7 @@ function drawWave1() {
     ) {
       currentEnemies.splice(index, 1);
     }
-
-    currentEnemy.draw();
+  
   });
-}
 
-function generateBanner1() {
-  if (!(frames === 1)) {
-    return true;
-  }
-
-  const level1banner = new WaveBanner();
-
-  currentBanner.push(level1banner);
-}
-
-function drawBanner1() {
-  currentBanner.forEach((currentBanner, index) => {
-    // if (
-    //   currentBanner.x < -200 ||
-    //   currentBanner.x > 1500 ||
-    //   currentBanner.y > 800 ||
-    //   currentBanner.y < -300
-    // ) {
-    //   currentBanner.splice(currentBanner, index);
-    // }
-
-    currentBanner.draw("level1");
-  });
 }
