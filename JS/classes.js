@@ -78,7 +78,7 @@ class WaveBanner {
     this.width = 450;
     this.height = 250;
     this.image = new Image();
-    this.level = level
+    this.level = level;
   }
 
   draw() {
@@ -115,7 +115,22 @@ class HtmlEnemy {
 
   draw() {
     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-    this.x -= 5;
+
+    if (mainCharacter.x < this.x) {
+      this.x -= 2;
+    }
+
+    if (mainCharacter.x > this.x) {
+      this.x += 2;
+    }
+
+    if (mainCharacter.y < this.y) {
+      this.y -= 2;
+    }
+
+    if (mainCharacter.y > this.y) {
+      this.y += 2;
+    }
   }
 }
 

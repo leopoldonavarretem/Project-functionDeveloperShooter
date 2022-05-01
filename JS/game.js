@@ -22,12 +22,11 @@ window.onload = () => {
 function startGame() {
   requestId = requestAnimationFrame(updateGame);
 
-  
   addEventListener("keydown", (event) => {
     if (event.key == "w" || "d" || "s" || "a") {
       mainCharacter.action(event.key);
     }
-    
+
     if (event.key == "p") {
       const bullet1 = new Bullet(mainCharacter.direction);
       currentBullets.push(bullet1);
@@ -58,7 +57,7 @@ function generateAssets() {
   mainCharacter.draw();
 
   //GENERATES BULLETS
-  drawBullet();
+  generateBullets();
 
   //lEVEL ONE
   generateBanners();
@@ -66,23 +65,21 @@ function generateAssets() {
 }
 
 function generateBanners() {
-  if(frames == 100) {
+  if (frames == 100) {
     const levelOneBanner = new WaveBanner("level1");
-    currentBanner.push(levelOneBanner)
-
+    currentBanner.push(levelOneBanner);
   }
 
-  if(frames ==200){
-    currentBanner.pop()
+  if (frames == 200) {
+    currentBanner.pop();
   }
-  
-  currentBanner.forEach((current)=>{
-    current.draw()
-  })
 
+  currentBanner.forEach((current) => {
+    current.draw();
+  });
 }
 
-function drawBullet() {
+function generateBullets() {
   currentBullets.forEach((currentBullet, index) => {
     if (
       currentBullet.x < -100 ||
@@ -98,12 +95,12 @@ function drawBullet() {
 
 //GENERATE WAVE 1
 function generateEnemies() {
-  if (frames === 500) {
-    const htmlEnemy1 = new HtmlEnemy(1300, 50);
-    const htmlEnemy2 = new HtmlEnemy(1300, 250);
-    const htmlEnemy3 = new HtmlEnemy(1300, 450);
-    const htmlEnemy4 = new HtmlEnemy(1400, 150);
-    const htmlEnemy5 = new HtmlEnemy(1400, 350);
+  if (frames === 200) {
+    const htmlEnemy1 = new HtmlEnemy(1300, 100);
+    const htmlEnemy2 = new HtmlEnemy(900, -200);
+    const htmlEnemy3 = new HtmlEnemy(-200, 900);
+    const htmlEnemy4 = new HtmlEnemy(-300, -300);
+    const htmlEnemy5 = new HtmlEnemy(1200, 750);
 
     currentEnemies.push(
       htmlEnemy1,
@@ -125,7 +122,5 @@ function generateEnemies() {
     ) {
       currentEnemies.splice(index, 1);
     }
-  
   });
-
 }
